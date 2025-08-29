@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+    background-color: #fff
+}
+
+.cl-avatar-box {
+    width: 5 rem;
+    height: 10 rem;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    transition: all 0.3s ease-in-out;
+
+}
+
+
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: 'Inter', sans-serif;
+    /* or your chosen font */
+
+    /* fallback background */
+    color: #111827;
+    /* default text color */
+}
+
+/* 4. Smooth transitions for hover effects */
+a,
+button,
+input,
+textarea,
+div {
+    transition: all 0.3s ease-in-out;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.4);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 100, 100, 0.7);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 6. Selection highlight */
+::selection {
+    background: #2563eb;
+    /* Tailwind's blue-600 */
+    color: white;
+}
+
+/* 7. Image smoothness */
+img {
+    -webkit-user-drag: none;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* 8. Disable text selection for buttons/links */
+button,
+a {
+    user-select: none;
+    cursor: pointer;
+}
