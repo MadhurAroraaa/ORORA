@@ -4,7 +4,7 @@
 A modern Ecommerce website built using **React**, **Tailwind CSS**, and **Context API** for efficient state management. User authentication is integrated with **Clerk** for a smooth and secure signup/login experience.  
 
 🚀 **Live Preview:**  
-[https://zaptro.netlify.app/](https://zaptro.netlify.app/)
+
 
 ---
 
@@ -29,9 +29,3 @@ A modern Ecommerce website built using **React**, **Tailwind CSS**, and **Contex
 
 ---
 
-## Getting Started
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/your-repo-name.git
