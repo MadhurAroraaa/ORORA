@@ -3,12 +3,9 @@ import { getData } from '../context/DataContext'
 import FilterSection from '../components/FilterSection'
 import Loading from '../assets/loading.gif'
 import ProductCard from '../components/ProductCard'
-import Category from '../components/Category'
 import Pagination from '../components/Pagination.jsx'
 
-
 const Products = () => {
-
   const { data, fetchAllProducts } = getData()
   const [search, setSearch] = useState("")
   const [Category, setCategory] = useState("All")
@@ -23,48 +20,45 @@ const Products = () => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      const pricesInRupees = data.map(item => item.price * 85);
-      const minPrice = Math.floor(Math.min(...pricesInRupees) / 100) * 100; // Round down to nearest 100
-      const maxPrice = Math.ceil(Math.max(...pricesInRupees) / 100) * 100; // Round up to nearest 100
-      setPriceRange([minPrice, maxPrice]);
+      const pricesInRupees = data.map(item => item.price * 85)
+      const minPrice = Math.floor(Math.min(...pricesInRupees) / 100) * 100
+      const maxPrice = Math.ceil(Math.max(...pricesInRupees) / 100) * 100
+      setPriceRange([minPrice, maxPrice])
     }
   }, [data])
 
   useEffect(() => {
-    setPage(1);
+    setPage(1)
   }, [search, Category, brand, priceRange])
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value)
-  }
-  const handleBrandChange = (e) => {
-    setBrand(e.target.value)
-  }
+  const handleCategoryChange = (e) => setCategory(e.target.value)
+  const handleBrandChange = (e) => setBrand(e.target.value)
 
   const filteredData = data?.filter((item) => {
-    const priceInRupees = item.price * 85; 
+    const priceInRupees = item.price * 85
     return (
       item.title.toLowerCase().includes(search.toLowerCase()) &&
       (Category === "All" || item.category === Category) &&
       (brand === "All" || item.brand === brand) &&
       priceInRupees >= priceRange[0] &&
       priceInRupees <= priceRange[1]
-    );
-  }) || [];
+    )
+  }) || []
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
   const paginatedData = filteredData.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
-  );
+  )
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className='max-w-8xl mx-auto px-6 py-8'>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {data.length > 0 ? (
-          <div className='flex gap-8'>
-            {/* Filter Section - Wider */}
-            <div className='w-80 flex-shrink-0'>
+          <div className="flex flex-col lg:flex-row gap-8">
+            
+            {/* ✅ Sidebar responsive (full width on mobile, fixed on lg) */}
+            <div className="w-full lg:w-80 flex-shrink-0">
               <FilterSection 
                 search={search} 
                 setSearch={setSearch} 
@@ -80,19 +74,18 @@ const Products = () => {
               />
             </div>
             
-            {/* Products Grid - Takes remaining space */}
-            <div className='flex-1 min-w-0'>
+            {/* ✅ Products grid auto-adjusts */}
+            <div className="flex-1 min-w-0">
               {filteredData.length > 0 ? (
                 <>
-                  <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4'>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                     {paginatedData.map((product) => (
-                      <div key={product.id} className='h-full w-full'>
-                        <ProductCard product={product} />
-                      </div>
+                      <ProductCard key={product.id} product={product} />
                     ))}
                   </div>
+
                   {totalPages > 1 && (
-                    <div className='mt-12'>
+                    <div className="mt-12">
                       <Pagination 
                         currentPage={page}
                         totalPages={totalPages}
@@ -102,17 +95,17 @@ const Products = () => {
                   )}
                 </>
               ) : (
-                <div className='flex flex-col items-center justify-center h-[50vh] text-center p-8 bg-white rounded-lg shadow-sm'>
-                  <h2 className='text-2xl font-semibold text-gray-700'>No products found</h2>
-                  <p className='text-gray-500 mt-2'>Try adjusting your filters or search term</p>
+                <div className="flex flex-col items-center justify-center h-[50vh] text-center p-6 bg-white rounded-lg shadow-sm">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-gray-700">No products found</h2>
+                  <p className="text-gray-500 mt-2">Try adjusting your filters or search term</p>
                   <button 
                     onClick={() => {
-                      setSearch('');
-                      setCategory('All');
-                      setBrand('All');
-                      setPriceRange([0, 493400]);
+                      setSearch('')
+                      setCategory('All')
+                      setBrand('All')
+                      setPriceRange([0, 493400])
                     }}
-                    className='mt-4 px-6 py-2.5 bg-gradient-to-r from-blue-900 to-slate-900 text-white hover:from-slate-700 hover:to-blue-700 rounded-md  transition-colors text-sm font-medium'
+                    className="mt-4 px-6 py-2 bg-gradient-to-r from-blue-900 to-slate-900 text-white hover:from-slate-700 hover:to-blue-700 rounded-md transition text-sm font-medium"
                   >
                     Reset All Filters
                   </button>
@@ -121,13 +114,13 @@ const Products = () => {
             </div>
           </div>
         ) : (
-          <div className='flex items-center justify-center h-[70vh]'>
-            <img src={Loading} alt="Loading..." className='w-24 h-24 animate-pulse' />
+          <div className="flex items-center justify-center h-[70vh]">
+            <img src={Loading} alt="Loading..." className="w-20 h-20 animate-pulse" />
           </div>
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default Products

@@ -8,7 +8,7 @@ import { GiShoppingBag } from "react-icons/gi";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { cartItem,updateQuantity } = useCart();
+  const { cartItem, updateQuantity } = useCart();
   const totalPrice = cartItem.reduce((total, item) => total + (item.price * 85), 0)
 
   // FORM STATE
@@ -51,10 +51,10 @@ const Cart = () => {
   };
 
   return (
-    <div className="mt-10 max-w-6xl mx-auto mb-5">
+    <div className="mt-10 max-w-6xl mx-auto mb-5 min-h-screen">
       {cartItem.length > 0 ? (
         <div>
-          <h1 className="font-bold text-2xl">
+          <h1 className="font-bold text-2xl ml-3 ">
             My Cart ({cartItem.length} Products)
           </h1>
 
@@ -67,43 +67,64 @@ const Cart = () => {
               return (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-gray-300 via-sky-50 to-gray-300 p-5 rounded-md flex items-center justify-between mt-3 w-full"
+                  className="bg-gradient-to-br from-gray-300 via-sky-50 to-gray-300 p-5 rounded-md flex flex-col sm:flex-row items-center justify-between mt-3 w-full"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 lg:gap-20 w-full">
                     <img
                       src={item.image}
                       alt={item.title.slice(0, 15)}
-                      className="w-20 h-20 rounded-md"
+                      className="w-20 h-20 rounded-md object-cover "
                     />
-                    <div>
-                      <h1 className="w-[300px] line-clamp-2 ">{item.title}</h1>
-                      <p className="text-blue-800 font-semibold">
+                    <div className="flex-1">
+                      <h1 className="line-clamp-2 text-sm sm:text-base md:text-base lg:text-base break-words">
+                        {item.title}
+                      </h1>
+                      <p className="text-blue-800 font-semibold mt-2 text-sm sm:text-base">
                         ₹{priceInRupees}
                       </p>
                     </div>
                   </div>
 
+
+
+
+
                   {/* Quantity Controls */}
-                  <div className="bg-gradient-to-r from-blue-900 to-slate-900 text-white flex gap-4 p-2 rounded-md font-bold  hover:from-slate-700 hover:to-blue-700 transition-transform text-xl m-2">
-                    <button className="cursor-pointer" onClick={()=>updateQuantity(cartItem,item.id,"decrease")} >-</button>
+                  <div className="bg-gradient-to-r from-blue-900 to-slate-900 text-white flex items-center justify-center gap-3 sm:gap-4 p-2 rounded-md font-bold hover:from-slate-700 hover:to-blue-700 transition-transform text-base sm:text-lg md:text-xl m-2 w-full sm:w-auto">
+                    <button
+                      className="cursor-pointer px-2 sm:px-3"
+                      onClick={() => updateQuantity(cartItem, item.id, "decrease")}
+                    >
+                      -
+                    </button>
                     <span>{item.quantity}</span>
-                    <button className="cursor-pointer" onClick={()=>updateQuantity(cartItem,item.id,"increase")} >+</button>
+                    <button
+                      className="cursor-pointer px-2 sm:px-3"
+                      onClick={() => updateQuantity(cartItem, item.id, "increase")}
+                    >
+                      +
+                    </button>
                   </div>
 
                   {/* Delete Button */}
-                  <span className="hover:bg-white/60 transition-all rounded-full p-3 hover:shadow-2xl">
-                    <FaRegTrashCan className="text-blue-800 text-2xl cursor-pointer" onClick={()=>updateQuantity(cartItem,item.id,"delete")}/>
+                  <span className="hover:bg-white/60 transition-all rounded-full p-2 sm:p-3 hover:shadow-2xl flex justify-center items-center">
+                    <FaRegTrashCan
+                      className="text-blue-800 text-lg sm:text-xl md:text-2xl cursor-pointer"
+                      onClick={() => updateQuantity(cartItem, item.id, "delete")}
+                    />
                   </span>
+
                 </div>
               );
             })}
           </div>
 
           {/* DELIVERY INFO */}
-          <div className="grid grid-cols-2 gap-20">
-            <div className="bg-gray-100 rounded-md p-7 mt-4 space-y-2">
-              <h1 className="text-gray-800 text-xl font-bold">Delivery Info</h1>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20">
+            <div className="bg-gray-100 rounded-md p-5 sm:p-7 mt-4 space-y-4">
+              <h1 className="text-gray-800 text-lg sm:text-xl font-bold">Delivery Info</h1>
 
+              {/* Full Name */}
               <div className="flex flex-col space-y-1">
                 <label>Full Name: </label>
                 <input
@@ -113,6 +134,7 @@ const Cart = () => {
                 />
               </div>
 
+              {/* Address */}
               <div className="flex flex-col space-y-1">
                 <label>Address: </label>
                 <input
@@ -125,7 +147,8 @@ const Cart = () => {
                 />
               </div>
 
-              <div className="flex w-full gap-5">
+              {/* State & Post Code */}
+              <div className="flex flex-col sm:flex-row w-full gap-4">
                 <div className="flex flex-col space-y-1 w-full">
                   <label>State: </label>
                   <input
@@ -151,7 +174,8 @@ const Cart = () => {
                 </div>
               </div>
 
-              <div className="flex w-full gap-5">
+              {/* Country & Phone */}
+              <div className="flex flex-col sm:flex-row w-full gap-4">
                 <div className="flex flex-col space-y-1 w-full">
                   <label>Country: </label>
                   <input
@@ -177,62 +201,87 @@ const Cart = () => {
                 </div>
               </div>
 
-              <button className="bg-gradient-to-r from-blue-900 to-slate-900 text-white flex gap-4 py-2 px-3 rounded-md font-bold  hover:from-slate-700 hover:to-blue-700 transition-transform text-xl mt-4 ">
+              {/* Submit */}
+              <button className="bg-gradient-to-r from-blue-900 to-slate-900 text-white w-full sm:w-auto flex justify-center gap-2 py-2 px-3 rounded-md font-bold hover:from-slate-700 hover:to-blue-700 transition-transform text-lg sm:text-xl mt-4">
                 Submit
               </button>
 
+              {/* Divider */}
               <div className="flex items-center justify-center w-full text-gray-700">
                 ---------------OR---------------
               </div>
 
+              {/* Detect My Location */}
               <div className="flex justify-center">
                 <button
                   onClick={getLocation}
                   disabled={loading}
-                  className="bg-gradient-to-r from-blue-900 to-blue-500 text-white hover:from-blue-400 hover:to-blue-800 px-3 py-2 rounded-md cursor-pointer mt-2 font-bold transition duration-400 disabled:bg-gray-400"
+                  className="bg-gradient-to-r from-blue-900 to-blue-500 text-white hover:from-blue-400 hover:to-blue-800 px-3 py-2 rounded-md cursor-pointer mt-2 font-bold transition duration-400 disabled:bg-gray-400 w-full sm:w-auto"
                 >
                   {loading ? "Detecting..." : "Detect My Location"}
                 </button>
               </div>
-            </div>
-            <div className="bg-white border-gray-200 shadow-xl rounded-md p-7 mt-4 space-y-2 h-max">
-              <h1 className="text-gray-800 text-xl font-bold">Invoice Details</h1>
-              <div className="flex justify-between items-center">
-                <h1 className="flex gap-1 items-center text-gray-700"><span><LuNotebookText /></span>Items Total</h1>
-                <p>₹{totalPrice}</p>
-              </div>
-              <div className="flex justify-between items-center">
-                <h1 className="flex gap-1 items-center text-gray-700 "><span><MdDeliveryDining /></span>Delivery Fee</h1>
-                <p>
-                  <span className="line-through text-sm">₹50</span>
-                  <span className=" text-green-800 ml-1 text-base ">
-                    FREE
-                  </span>
-                </p>
-              </div>
-              <div className="flex justify-between items-center">
-                <h1 className="flex gap-1 items-center text-gray-700 "><span><GiShoppingBag/></span>Handling Charge</h1>
-                <p>₹20</p>
-              </div>
-              <hr className="text-gray-500 mt-2"/>
-              <div className="flex justify-between items-center">
-                <h1 className="font-semibold text-lg">Grand Total</h1>
-                <p className="font-semibold text-lg">₹{totalPrice +20}</p>
-              </div>
-              <div>
-                <h1 className="font-semibold text-gray-700 mb-3 mt-7">Apply Promo Code</h1>
-                <div className="flex gap-3 border w-full border-gray-600 justify-between items-center rounded-md">
-                  <input type="text" placeholder="Enter Code" className="p-2   focus:outline-none " />
-                    <button className="bg-gradient-to-r from-blue-900 to-slate-900 text-white flex gap-4 py-2 px-3 rounded-md font-bold  hover:from-slate-700 hover:to-blue-700 transition-transform text-xl  m-2">
-                Apply
-              </button>
-                </div>
-              </div>
-              <button className="bg-gradient-to-br from-red-600 to-slate-900 text-white hover:from-slate-900/50 hover:to-red-600/50 transition duration-500 px-3 py-2 rounded-md w-full">
-            Proceed To Checkout
-          </button>
 
             </div>
+            <div className="bg-white border border-gray-200 shadow-xl rounded-md p-7 mt-4 space-y-4 h-max">
+              <h2 className="text-gray-800 text-xl font-bold">Invoice Details</h2>
+
+              {/* Items Total */}
+              <div className="flex justify-between items-center">
+                <span className="flex gap-1 items-center text-gray-700">
+                  <LuNotebookText /> Items Total
+                </span>
+                <p>₹{totalPrice}</p>
+              </div>
+
+              {/* Delivery Fee */}
+              <div className="flex justify-between items-center">
+                <span className="flex gap-1 items-center text-gray-700">
+                  <MdDeliveryDining /> Delivery Fee
+                </span>
+                <p>
+                  <span className="line-through text-sm">₹50</span>
+                  <span className="text-green-800 ml-1 text-base">FREE</span>
+                </p>
+              </div>
+
+              {/* Handling Charge */}
+              <div className="flex justify-between items-center">
+                <span className="flex gap-1 items-center text-gray-700">
+                  <GiShoppingBag /> Handling Charge
+                </span>
+                <p>₹20</p>
+              </div>
+
+              <hr className="text-gray-300 my-2" />
+
+              {/* Grand Total */}
+              <div className="flex justify-between items-center font-semibold text-lg">
+                <span>Grand Total</span>
+                <p>₹{totalPrice + 20}</p>
+              </div>
+
+              {/* Promo Code */}
+              <div>
+                <p className="font-semibold text-gray-700 mb-3 mt-5">Apply Promo Code</p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Enter Code"
+                    className="flex-1 p-2 border border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-800"
+                  />
+                  <button className="bg-gradient-to-r from-blue-900 to-slate-900 text-white px-4 py-2 rounded-md font-bold hover:from-slate-700 hover:to-blue-700 transition text-base">
+                    Apply
+                  </button>
+                </div>
+              </div>
+
+              {/* Checkout Button */}
+              <button className="bg-gradient-to-br from-red-600 to-slate-900 text-white hover:from-slate-900/70 hover:to-red-600/70 transition duration-500 px-3 py-3 rounded-md w-full font-bold mt-4">
+                Proceed To Checkout
+              </button>
+            </div>
+
           </div>
         </div>
       ) : (

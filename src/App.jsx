@@ -11,11 +11,13 @@ import CategoryPage from "./pages/CategoryPage";
 import { DataProvider } from "./context/DataContext";
 import SingleProduct from "./pages/SingleProduct";
 import ScrollToTop from "./components/ScrollToTop"
+import { useCart } from "./context/CartContext";
 
 
 function App() {
   const [location, setLocation] = useState(null);
   const [openDropDown, setOpenDropDown] = useState(false);
+  const { cartItem, setCartItem } = useCart()
 
   const getLocation = async () => {
     if (!navigator.geolocation) {
@@ -45,11 +47,25 @@ function App() {
   useEffect(() => {
     getLocation();
   }, []);
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cartItem')
+    if (storedCart) {
+      setCartItem(JSON.parse(storedCart))
+    }
+  }, [])
 
+  // Save to localStorage whenever cartItem changes
+  useEffect(() => {
+    if (cartItem.length > 0) {
+      localStorage.setItem('cartItem', JSON.stringify(cartItem))
+    } else {
+      localStorage.removeItem('cartItem') // optional: clean up when empty
+    }
+  }, [cartItem])
   return (
     <DataProvider>
       <BrowserRouter>
-      <ScrollToTop />
+        <ScrollToTop />
         <Navbar
           location={location}
           getLocation={getLocation}
