@@ -58,10 +58,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             onClick={() => typeof page === "number" && onPageChange(page)}
             disabled={page === "..."}
             className={`min-w-[2.5rem] h-9 flex items-center justify-center rounded-md text-sm sm:text-base
-              ${
-                page === currentPage
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+              ${page === currentPage
+                ? "bg-blue-600 text-white shadow-sm"
+                : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
               }`}
           >
             {page}

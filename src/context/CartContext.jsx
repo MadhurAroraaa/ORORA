@@ -29,15 +29,15 @@ export const CartProvider = ({ children }) => {
                 } else if (action === "decrease") {
                     newUnit = newUnit - 1
                 }
-                else if(action === "delete"){
+                else if (action === "delete") {
                     newUnit = 0
                 }
-                return newUnit > 0 ? {...item,quantity:newUnit} : null
+                return newUnit > 0 ? { ...item, quantity: newUnit } : null
             }
             return item;
-        }).filter(item => item != null)) 
+        }).filter(item => item != null))
     }
-    return <CartContext.Provider value={{ cartItem, setCartItem, addToCart,updateQuantity }}>
+    return <CartContext.Provider value={{ cartItem, setCartItem, addToCart, updateQuantity }}>
         {children}
     </CartContext.Provider>
 }

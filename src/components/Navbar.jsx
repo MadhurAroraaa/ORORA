@@ -69,10 +69,9 @@ const Navbar = ({ location, getLocation, openDropDown, setOpenDropDown }) => {
                 key={item}
                 to={`/${item === "Home" ? "" : item.toLowerCase()}`}
                 className={({ isActive }) =>
-                  `cursor-pointer transition-all duration-200 ${
-                    isActive
-                      ? "text-blue-600 border-b-2 border-blue-600"
-                      : "text-black hover:text-blue-600"
+                  `cursor-pointer transition-all duration-200 ${isActive
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-black hover:text-blue-600"
                   }`
                 }
               >
@@ -118,8 +117,7 @@ const Navbar = ({ location, getLocation, openDropDown, setOpenDropDown }) => {
               to={`/${item === "Home" ? "" : item.toLowerCase()}`}
               onClick={() => setMobileMenu(false)}
               className={({ isActive }) =>
-                `block font-semibold ${
-                  isActive ? "text-blue-600" : "text-slate-700 hover:text-blue-600"
+                `block font-semibold ${isActive ? "text-blue-600" : "text-slate-700 hover:text-blue-600"
                 }`
               }
             >

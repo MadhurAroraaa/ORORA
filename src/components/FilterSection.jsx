@@ -27,9 +27,9 @@ const FilterSection = ({
 
   return (
     <div className="bg-gradient-to-br from-gray-300 via-sky-50 to-gray-300 mt-6 p-4 md:p-6 rounded-lg shadow-md w-full h-max">
-      
+
       {/* Search */}
-      <input 
+      <input
         type="text"
         placeholder="Search products..."
         onChange={(e) => setSearch(e.target.value)}
