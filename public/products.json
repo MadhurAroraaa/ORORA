@@ -1,0 +1,123 @@
+[
+  {
+    "id": 101,
+    "title": "Orora Ultra Mobile X1",
+    "price": 299.99,
+    "category": "mobile",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Mobile+X1",
+    "discount": 20,
+    "rating": { "rate": 4.3, "count": 124 }
+  },
+  {
+    "id": 102,
+    "title": "Orora Ultra Mobile X2",
+    "price": 449.99,
+    "category": "mobile",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Mobile+X2",
+    "discount": 25,
+    "rating": { "rate": 4.5, "count": 210 }
+  },
+  {
+    "id": 201,
+    "title": "OroraBook Pro 14",
+    "price": 999.99,
+    "category": "laptop",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Laptop+Pro+14",
+    "discount": 15,
+    "rating": { "rate": 4.6, "count": 88 }
+  },
+  {
+    "id": 202,
+    "title": "OroraBook Air 13",
+    "price": 799.99,
+    "category": "laptop",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Laptop+Air+13",
+    "discount": 10,
+    "rating": { "rate": 4.2, "count": 64 }
+  },
+  {
+    "id": 301,
+    "title": "Orora Vision 55\" 4K TV",
+    "price": 599.99,
+    "category": "tv",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=TV+55+4K",
+    "discount": 30,
+    "rating": { "rate": 4.4, "count": 145 }
+  },
+  {
+    "id": 302,
+    "title": "Orora Vision 65\" 4K TV",
+    "price": 899.99,
+    "category": "tv",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=TV+65+4K",
+    "discount": 28,
+    "rating": { "rate": 4.5, "count": 102 }
+  },
+  {
+    "id": 401,
+    "title": "Orora Sound Pro ANC Headphones",
+    "price": 149.99,
+    "category": "audio",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Headphones+ANC",
+    "discount": 35,
+    "rating": { "rate": 4.1, "count": 320 }
+  },
+  {
+    "id": 402,
+    "title": "Orora Sound Mini TWS Earbuds",
+    "price": 59.99,
+    "category": "audio",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=TWS+Earbuds",
+    "discount": 40,
+    "rating": { "rate": 4.0, "count": 510 }
+  },
+  {
+    "id": 501,
+    "title": "Orora GamePad Elite",
+    "price": 69.99,
+    "category": "gaming",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Gamepad+Elite",
+    "discount": 18,
+    "rating": { "rate": 4.3, "count": 210 }
+  },
+  {
+    "id": 502,
+    "title": "Orora Gaming Headset 7.1",
+    "price": 89.99,
+    "category": "gaming",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=Gaming+Headset+7.1",
+    "discount": 22,
+    "rating": { "rate": 4.2, "count": 180 }
+  },
+  {
+    "id": 601,
+    "title": "Orora AirFry Max 5L",
+    "price": 129.99,
+    "category": "appliances",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=AirFry+Max+5L",
+    "discount": 26,
+    "rating": { "rate": 4.1, "count": 90 }
+  },
+  {
+    "id": 602,
+    "title": "Orora RoboVac 2-in-1",
+    "price": 249.99,
+    "category": "appliances",
+    "brand": "Orora",
+    "image": "https://placehold.co/600x600?text=RoboVac+2-in-1",
+    "discount": 20,
+    "rating": { "rate": 4.0, "count": 55 }
+  }
+]
+

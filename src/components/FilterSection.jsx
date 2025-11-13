@@ -1,5 +1,5 @@
 import React from 'react'
-import { getData } from '../context/DataContext'
+import { useData } from "../context/DataContext";
 
 const FilterSection = ({
   search, setSearch,
@@ -10,7 +10,7 @@ const FilterSection = ({
   handleBrandChange,
   data
 }) => {
-  const { categoryOnlyData, brandOnlyData } = getData()
+  const { categoryOnlyData, brandOnlyData } = useData()
 
   // Calculate min and max prices
   const getPriceRange = () => {

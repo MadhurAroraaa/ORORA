@@ -34,6 +34,8 @@ const ProductCard = ({ product }) => {
           className="absolute top-0 left-0 w-full h-full object-contain 
                      p-4 sm:p-6 transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
+          decoding="async"
+          fetchpriority="low"
           onError={(e) => {
             e.target.src = "https://placehold.co/300x300?text=No+Image";
           }}

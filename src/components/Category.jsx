@@ -1,7 +1,7 @@
 // src/components/Category.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { getData } from "../context/DataContext";
+import { useData } from "../context/DataContext";
 
 // Import your images
 import mobileImg from "../assets/mobile.png";
@@ -11,7 +11,7 @@ import audioImg from "../assets/audio.webp";
 
 
 const Category = () => {
-  const { categoryOnlyData } = getData();
+  const { categoryOnlyData } = useData();
 
   // Map category names to images
   const categoryImages = {

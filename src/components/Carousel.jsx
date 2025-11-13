@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getData } from '../context/DataContext'
+import { useData } from "../context/DataContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -29,7 +29,7 @@ const PrevArrow = ({ onClick }) => (
 
 const Carousel = () => {
   const navigate = useNavigate();
-  const { data, fetchAllProducts } = getData();
+  const { data, fetchAllProducts } = useData();
 
   useEffect(() => {
     fetchAllProducts();
@@ -44,6 +44,9 @@ const Carousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     pauseOnHover: false,
+    lazyLoad: 'ondemand',
+    waitForAnimate: false,
+    adaptiveHeight: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -115,6 +118,9 @@ const Carousel = () => {
                   className="rounded-full w-52 sm:w-72 md:w-[400px] lg:w-[500px] hover:scale-105 transition-all shadow-2xl shadow-blue-300 cursor-pointer"
                   onClick={() => navigate(`/products/${item.id}`)}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="low"
                 />
               </div>
             </div>

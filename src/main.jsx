@@ -9,29 +9,46 @@ import { ToastContainer } from 'react-toastify'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
-if (!PUBLISHABLE_KEY) {
-  throw new Error('Missing Publishable Key')
+const Providers = ({ children }) => {
+  const content = (
+    <>
+      {children}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
+  )
+
+  if (!PUBLISHABLE_KEY) {
+    if (import.meta.env.DEV) {
+      console.warn('Clerk key missing. Auth UI disabled.')
+    }
+    return content
+  }
+
+  return (
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      {content}
+    </ClerkProvider>
+  )
 }
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <DataProvider>
       <CartProvider>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+        <Providers>
           <App />
-          <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-        </ClerkProvider>
+        </Providers>
       </CartProvider>
     </DataProvider>
   </StrictMode>,
